@@ -4,10 +4,14 @@
     enable = true;
     enableBashIntegration = true;
 
+    # These settings more or less mimic the default theme bobby theme
+    # from the bash-it project.
+    #
+    # See https://starship.rs/config/#configuration for more options
     settings = {
       format = ''
         no% $time $hostname in $directory
-        $bar$git_branch$git_status$bar $character
+        $git_branch$git_status$character
       '';
 
       time = {
@@ -29,20 +33,6 @@
         format = "[$path]($style)[$read_only]($read_only_style) ";
         style = "bold blue";
         home_symbol = "~";
-      };
-
-      bar = {
-        symbol = "|";
-        format = "[|]";
-      };
-
-      git_branch = {
-        symbol = "± ";
-        format = "[± |](bold cyan)[$branch](bold cyan)";
-      };
-
-      git_status = {
-        format = "[ ✗](red)[|](green)";
       };
 
       character = {
