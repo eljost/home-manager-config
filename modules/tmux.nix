@@ -6,6 +6,8 @@
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
+    shortcut = "a";
+
     extraConfig = ''
       #unbind C-b
       #set -g prefix C-a
@@ -23,10 +25,6 @@
       bind r source-file ~/.tmux.conf \; display-message "Reloaded config from .tmux.conf!"
 
       set -g mouse on
-      #bind C-y run-shell -b "tmux show-buffer | xclip -selection clipboard -i"
-      #bind C-p run-shell -b "xclip -o selection clipboard | tmux load-buffer -; tmux paste-buffer"
-
-      set -g default-terminal "tmux-256color"
       set -as terminal-overrides ",xterm-256color:Tc"
 
       # Enable clipboard access in opencode
