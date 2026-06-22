@@ -22,19 +22,14 @@ pkgs,
     ./modules/git.nix
   ];
 
-  programs.home-manager.enable = true;
+  # Seems to be required for Debian
   targets.genericLinux.enable = true;
 
   programs = {
-    bash = {
-      enable = true;
-      shellAliases = {
-        gs = "git status";
-        gd = "git diff";
-        gca = "git commit --all";
-      };
-    };
+    home-manager.enable = true;
+    bash.enable = true;
 
+    # Alternatives to cat and diff
     bat.enable = true;
     difftastic.enable = true;
 
