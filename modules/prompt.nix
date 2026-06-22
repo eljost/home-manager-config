@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   programs.starship = {
     enable = true;
@@ -10,7 +7,7 @@
     settings = {
       format = ''
         no% $time $hostname in $directory
-        $git_branch$git_status$custom.git_clean$character
+        $bar$git_branch$git_status$bar $character
       '';
 
       time = {
@@ -34,27 +31,23 @@
         home_symbol = "~";
       };
 
+      bar = {
+        symbol = "|";
+        format = "[|]";
+      };
+
       git_branch = {
-        symbol = "";
-        format = "[± |$branch]($style)";
-        style = "bold purple";
+        symbol = "± ";
+        format = "[± |](bold cyan)[$branch](bold cyan)";
       };
 
       git_status = {
-        format = "[$all_status$ahead_behind]($style)";
-        style = "red";
-      };
-
-      custom.git_clean = {
-        command = "echo ✓";
-        when = "git rev-parse --is-inside-work-tree > /dev/null 2>&1 && [ -z \"$(git status --porcelain)\"]";
-        format = "[ ✓|]($style)";
-        style = "green";
+        format = "[ ✗](red)[|](green)";
       };
 
       character = {
-        success_symbol =  "[→](bold green)";
-        error_symbol = "[→](bold red)";
+        success_symbol = " [→](green)";
+        error_symbol = " [→](red)";
       };
     };
   };
