@@ -19,16 +19,29 @@ pkgs,
     ./modules/editor.nix
     ./modules/tmux.nix
     ./modules/prompt.nix
-    #./git.nix
+    ./modules/git.nix
   ];
 
   programs.home-manager.enable = true;
   targets.genericLinux.enable = true;
-  programs.bash.enable = true;
 
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    nix-direnv.enable = true;
+  programs = {
+    bash = {
+      enable = true;
+      shellAliases = {
+        gs = "git status";
+        gd = "git diff";
+        gca = "git commit --all";
+      };
+    };
+
+    bat.enable = true;
+    difftastic.enable = true;
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
   };
 }
