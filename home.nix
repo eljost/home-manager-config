@@ -13,6 +13,8 @@ pkgs,
     "..." = "cd ../..";
     ll = "ls -lth --color=auto";
     la = "ls -ltha --color=auto";
+    tf = "tail -f";
+    tF = "tail -f -n +0";
   };
 
   imports = [
