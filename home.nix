@@ -11,8 +11,8 @@ pkgs,
   home.shellAliases = {
     ".." = "cd ..";
     "..." = "cd ../..";
-    ll = "ls -lth";
-    la = "ls -ltha";
+    ll = "ls -lth --color=auto";
+    la = "ls -ltha --color=auto";
   };
 
   imports = [
