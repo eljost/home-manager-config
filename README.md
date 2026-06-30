@@ -13,3 +13,14 @@ It requires `extra-experimental-features = nix-command  flakes` in `/etc/nix/nix
  ```
  home-manager switch --flake github:eljost/home-manager-config#jst
  ```
+
+ ## Using
+
+ ### Add ssh key to `ssh-agent`:
+ ```
+ # ssh-agent should be running
+ systemctl --user status ssh-agent.service
+ssh-add [path to private key]
+# list added keys
+ssh-add -l
+```

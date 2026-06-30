@@ -22,6 +22,7 @@ pkgs,
     ./modules/tmux.nix
     ./modules/prompt.nix
     ./modules/git.nix
+    ./modules/services.nix
   ];
 
   # Seems to be required for Debian
