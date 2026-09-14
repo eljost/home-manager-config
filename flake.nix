@@ -1,5 +1,5 @@
 {
-  description = "Home Manager config that provides basic tooling on non-NixOS systems.";
+  description = "Home Manager config that providing basic tooling, standalone or on NixOS";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
@@ -7,7 +7,10 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim.url = "github:eljost/nixvim";
+    nixvim = {
+      url = "github:eljost/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,14 +23,23 @@
     }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
     in
     {
-      homeConfigurations."jst" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit nixvim; };
-        modules = [
+      homeModules.default = {
+        imports = [
+          nixvim.homeModules.nixvim
           ./home.nix
+        ];
+      };
+
+      homeConfigurations."jst" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          self.homeModules.default
+          {
+            home.username = "jst";
+            home.homeDirectory = "/home/jst";
+          }
         ];
       };
     };
