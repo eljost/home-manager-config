@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./services.nix
+  ];
+
   home.username = "jst";
   home.homeDirectory = "/home/jst";
 

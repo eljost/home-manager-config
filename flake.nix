@@ -27,9 +27,9 @@
     {
       homeModules.default = {
         imports = [
-          nixvim.homeModules.nixvim
           ./home.nix
         ];
+        _module.args.nixvim = nixvim;
       };
 
       homeConfigurations."jst" = home-manager.lib.homeManagerConfiguration {
