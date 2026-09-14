@@ -1,5 +1,5 @@
 {
-  description = "Home Manager config that providing basic tooling, standalone or on NixOS";
+  description = "Home Manager config that provides basic tooling, standalone or on NixOS";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
