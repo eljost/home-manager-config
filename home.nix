@@ -4,8 +4,14 @@ pkgs,
 ...
 }:
 {
-  home.username = "jst";
-  home.homeDirectory = "/home/jst";
+  imports = [
+    ./modules/editor.nix
+    ./modules/tmux.nix
+    ./modules/prompt.nix
+    ./modules/git.nix
+    ./modules/services.nix
+  ];
+
   home.stateVersion = "26.05";
   
   home.shellAliases = {
@@ -17,21 +23,8 @@ pkgs,
     tF = "tail -f -n +0";
   };
 
-  imports = [
-    ./modules/editor.nix
-    ./modules/tmux.nix
-    ./modules/prompt.nix
-    ./modules/git.nix
-    ./modules/services.nix
-  ];
-
-  # Seems to be required for Debian
-  targets.genericLinux.enable = true;
-
   programs = {
-    home-manager.enable = true;
     bash.enable = true;
-
     # Alternatives to cat and diff
     bat.enable = true;
     difftastic.enable = true;

@@ -36,10 +36,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         modules = [
           self.homeModules.default
-          {
-            home.username = "jst";
-            home.homeDirectory = "/home/jst";
-          }
+          ./modules/standalone.nix
         ];
       };
     };
