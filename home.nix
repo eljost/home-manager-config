@@ -9,6 +9,8 @@ pkgs,
     ./modules/tmux.nix
     ./modules/prompt.nix
     ./modules/git.nix
+    ./modules/emacs.nix
+    ./modules/lisp.nix
   ];
 
   home.stateVersion = "26.05";
