@@ -1,6 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
-  programs.emacs = {
+  imports = [ ./my-lisp.nix ];
+
+  programs.emacs = let
+    lisp = config.my.lisp.package;
+    lispExe = "${lisp}/bin/sbcl";
+  in {
     enable = true;
     package = pkgs.emacs;
     extraPackages = epkgs: [
@@ -9,7 +14,7 @@
     ];
     extraConfig = ''
       (setq standard-indent 2)
-      (setq inferior-lisp-program "${pkgs.sbcl}/bin/sbcl")
+      (setq inferior-lisp-program "${lispExe}")
 
       (dolist (hook '(lisp-data-mode-hook
                       scheme-mode-hook

@@ -1,9 +1,11 @@
 {
-  pkgs,
+  config,
   ...
 }:
 {
+  imports = [ ./my-lisp.nix ];
+
   home.packages = [
-    pkgs.sbcl
+    config.my.lisp.package
   ];
 }
